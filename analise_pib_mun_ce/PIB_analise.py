@@ -22,10 +22,10 @@ def processar_dados(dados):
     
     # Seleciona e renomeia as colunas relevantes
     df_ce = df_ce[['D1N', 'V']]
-    df_ce.columns = ['Municipio', 'PIB_Per_Capita']
+    df_ce.columns = ['Municipio', 'PIB']  # Renomeia para 'PIB' (não mais 'PIB_Per_Capita')
     
-    # Converte a coluna de PIB per capita para numérico
-    df_ce['PIB_Per_Capita'] = pd.to_numeric(df_ce['PIB_Per_Capita'], errors='coerce')
+    # Converte a coluna de PIB para numérico
+    df_ce['PIB'] = pd.to_numeric(df_ce['PIB'], errors='coerce')
     
     return df_ce
 
@@ -61,8 +61,8 @@ def main():
         if dados:
             df_ce = processar_dados(dados)
             
-            # Ordena os municípios por PIB per capita
-            df_ce = df_ce.sort_values(by="PIB_Per_Capita", ascending=False)
+            # Ordena os municípios por PIB (não mais por PIB per capita)
+            df_ce = df_ce.sort_values(by="PIB", ascending=False)
             
             # Exibe os dados
             print(df_ce.head())

@@ -62,7 +62,7 @@ Digite sua opção e o arquivo será salvo no diretório atual.
 
 A tabela abaixo mostra os municípios com os maiores PIBs no Ceará em 2021, com base nos dados obtidos da API do SIDRA/IBGE.
 
-| Município | PIB |
+| Município | PIB_2021 |
 | ------------- | ------------- |
 | Fortaleza - CE | 73436128 |
 | Maracanaú - CE | 12337017 |

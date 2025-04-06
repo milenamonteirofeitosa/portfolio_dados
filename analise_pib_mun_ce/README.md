@@ -58,6 +58,18 @@ Digite sua opção e o arquivo será salvo no diretório atual.
 
 [Link da API](https://apisidra.ibge.gov.br/)
 
+## 🏆 Ranking dos Municípios do Ceará com Maior PIB
+
+A tabela abaixo mostra os municípios com os maiores PIBs no Ceará em 2021, com base nos dados obtidos da API do SIDRA/IBGE.
+
+| Município | PIB |
+| ------------- | ------------- |
+| Fortaleza - CE | 73436128 |
+| Maracanaú - CE | 12337017 |
+| Caucaia - CE | 10414373| 
+| São Gonçalo do Amarante - CE | 8633637 |
+| Sobral - CE | 5395130 |
+
 ## 🧑‍💻 Autor(a)
 Este script foi desenvolvido com o objetivo de facilitar o acesso a dados públicos do IBGE sobre o desenvolvimento econômico dos municípios cearenses.
 

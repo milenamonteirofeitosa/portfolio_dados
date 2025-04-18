@@ -1,6 +1,6 @@
-# 📊 Consulta ao PIB per capita dos Municípios do Ceará via API SIDRA/IBGE
+# 📊 Consulta ao PIB dos Municípios do Ceará via API SIDRA/IBGE
 
-Este script em Python consulta a API do SIDRA (Sistema IBGE de Recuperação Automática) para obter os dados de **PIB per capita** dos municípios do estado do **Ceará (UF 23)** e permite salvar os resultados em arquivos CSV ou Excel.
+Este script em Python consulta a API do SIDRA (Sistema IBGE de Recuperação Automática) para obter os dados de **PIB capita** dos municípios do estado do **Ceará (UF 23)** e permite salvar os resultados em arquivos CSV ou Excel.
 
 ## 🔧 Requisitos
 
@@ -11,11 +11,11 @@ pip install pandas requests openpyxl
 ```
 
 ## 🚀 Como funciona
-**Consulta a API do SIDRA** com a tabela 5938 (PIB per capita dos municípios).
+**Consulta a API do SIDRA** com a tabela 5938 (PIB dos municípios).
 
 **Filtra os dados** apenas para o estado do Ceará (código 23).
 
-**Processa os dados** e exibe os municípios com maior PIB per capita.
+**Processa os dados** e exibe os municípios com maior PIB.
 
 **Pergunta ao usuário** se deseja salvar os dados como CSV, Excel ou nenhum.
 
@@ -43,7 +43,7 @@ Ao executar o script:
 python PIB_analise.py
 ```
 
-O script exibirá os municípios com maior PIB per capita no Ceará e perguntará:
+O script exibirá os municípios com maior PIB no Ceará e perguntará:
 
 ```bash
 "Deseja salvar os dados? (csv/excel/nenhum):"

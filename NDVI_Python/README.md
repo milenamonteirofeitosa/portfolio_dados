@@ -1,6 +1,5 @@
 # 🌱 NDVI Analysis for Ceará (2024) - Python + Google Earth Engine
 
-![NDVI Example](https://gisgeography.com/wp-content/uploads/2015/11/NDVI-Formula-NDVI-Index.png)  
 *Normalized Difference Vegetation Index (NDVI)*
 
 ## 📌 Sobre o Projeto

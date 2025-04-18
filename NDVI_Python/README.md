@@ -2,6 +2,8 @@
 
 *Normalized Difference Vegetation Index (NDVI)*
 
+É uma técnica de sensoriamento remoto amplamente utilizada para avaliar e monitorar a saúde, densidade e dinâmica da vegetação.
+
 ## 📌 Sobre o Projeto
 Este script calcula o **Índice de Vegetação por Diferença Normalizada (NDVI)** para o estado do Ceará em 2024 usando:
 - 🛰️ Dados do **Landsat 8** (Coleção Surface Reflectance Tier 1)

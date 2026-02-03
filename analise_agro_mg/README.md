@@ -1,0 +1,24 @@
+# 🚜 Análise da Evolução Agropecuária - Semiárido Mineiro (1985-2024)
+
+Este projeto realiza o processo de **ETL (Extract, Transform, Load)** de dados históricos da agropecuária em municípios do semiárido de Minas Gerais, utilizando a API do IBGE (SIDRA).
+
+## 🛠️ Tecnologias Utilizadas
+* **Linguagem:** Python 3.x
+* **Bibliotecas:** `requests` (API), `pandas` (Tratamento de dados), `python-dotenv` (Segurança)
+* **Banco de Dados:** PostgreSQL (Armazenamento e consultas analíticas)
+* **Segurança:** Uso de variáveis de ambiente para proteção de credenciais.
+
+## 📋 Funcionalidades
+1. **Extração Automática:** Consome dados da API SIDRA/IBGE sobre rebanhos e lavouras.
+2. **Transformação de Dados:** Limpeza, tratamento de valores nulos e estruturação tabular via Pandas.
+3. **Carga (Load):** Ingestão automatizada no banco de dados PostgreSQL.
+4. **Análise SQL:** Consultas complexas para identificar o crescimento da pecuária e agricultura na região ao longo de quase 40 anos.
+
+## 📂 Estrutura do Projeto
+* `main.py`: Script principal de extração e carga.
+* `analise.sql`: Queries analíticas para extração de insights do banco.
+* `.env.example`: Modelo de configuração para conexão com o banco de dados.
+* `MUN_SEMIARIDO_MG.csv`: Base de municípios utilizada no filtro da análise.
+
+## 📈 Exemplo de Insights (SQL)
+O projeto permite identificar, por exemplo, a migração de culturas de subsistência para grandes rebanhos bovinos, auxiliando na compreensão do impacto econômico no semiárido mineiro.

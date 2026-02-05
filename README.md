@@ -1,34 +1,34 @@
 # 📊 Data Science & Inteligência Geospacial: Portfólio Técnico
 
-Bem-vindo(a) ao meu repositório central de projetos. Aqui consolido estudos de caso que integram **Ciência de Dados**, **Economia** e **Geoprocessamento** para a resolução de problemas socioeconômicos e ambientais.
+Este repositório consolida projetos de **Ciência de Dados** com foco em **Inteligência Geospacial**, integrando análise estatística, consumo de dados via APIs e processamento de grandes bases territoriais para geração de insights estratégicos.
 
-## 📂 Estrutura de Projetos
+## 📂 Projetos em Destaque
 
 ### 🛰️ [Monitoramento NDVI e Precipitação: Ceará (2005-2024)](./projeto-ndvi)
 Análise multitemporal da dinâmica fenológica da Caatinga utilizando a API do **Google Earth Engine (Python)**.
-* **Destaque:** Correlação hídrica e resiliência do bioma frente a eventos climáticos extremos.
-* **Tecnologias:** Python, Pandas, Rasterio, Landsat 5/7/8.
+* **Destaque:** Correlação hídrica e resiliência hídrica via dados orbitais.
+* **Tecnologias:** Python, Pandas, Rasterio, API GEE.
 
 ### 🏛️ [Plano Diretor de Fortaleza - IPPLAN](./plano-diretor-fortaleza)
-Documentação técnica da atuação em Geoprocessamento para o macrozoneamento urbano de Fortaleza.
-* **Destaque:** Espacialização de diretrizes urbanísticas e análise de Uso e Ocupação do Solo.
+Atuação técnica em Geoprocessamento para o macrozoneamento urbano de Fortaleza.
+* **Destaque:** Espacialização de diretrizes urbanísticas e análise de zoneamento.
 * **Tecnologias:** QGIS, SIG, Planejamento Territorial.
 
 ### 📈 [Análise do PIB Municipal - Ceará](./analise_pib_mun_ce)
-Estudo estatístico da evolução econômica dos municípios cearenses.
-* **Destaque:** Identificação de disparidades regionais e polos de crescimento.
-* **Tecnologias:** R, Estatística Espacial.
+Estudo da evolução econômica municipal com automação na coleta de dados.
+* **Destaque:** Consumo automatizado de dados do **SIDRA/IBGE via API** e análise de disparidades regionais.
+* **Tecnologias:** Python (Pandas/Requests), Estatística Espacial.
 
 ### 🚜 [Diagnóstico Agropecuário - Minas Gerais](./analise_agro_mg)
-Análise de dados produtivos do setor agropecuário mineiro.
-* **Destaque:** Mapeamento de produtividade e cadeias produtivas regionais.
-* **Tecnologias:** Python, Análise de Dados Tabulares.
+Análise de produtividade e cadeias produtivas regionais.
+* **Destaque:** Engenharia de dados com **conexão direta em SQL** para processamento de bases produtivas.
+* **Tecnologias:** Python, SQL, Análise de Dados Tabulares.
 
 ---
 
-## 🛠️ Competências Técnicas
-* **Linguagens:** Python, R, SQL.
-* **Geo:** Google Earth Engine, QGIS, Geopandas.
-* **Estatística:** IBM SPSS, Séries Temporais.
+## 🛠️ Toolbox de Dados & Geo
+* **Data Science:** Python (Pandas, Numpy), R, SQL, API Integration (IBGE/GEE).
+* **Intelligence:** Google Earth Engine, QGIS, Geopandas.
+* **Estatística:** IBM SPSS, Análise de Séries Temporais, Estatística Espacial.
 
 **Contato:** [LinkedIn](https://www.linkedin.com/in/milenamonteirofeitosa/) 

@@ -1,4 +1,4 @@
-# 📊 Portfolio de Inteligência Geospacial e Análise de Dados
+# 📊 Data Science & Inteligência Geospacial: Portfólio Técnico
 
 Bem-vindo(a) ao meu repositório central de projetos. Aqui consolido estudos de caso que integram **Ciência de Dados**, **Economia** e **Geoprocessamento** para a resolução de problemas socioeconômicos e ambientais.
 

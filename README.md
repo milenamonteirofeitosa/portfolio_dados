@@ -31,4 +31,4 @@ Análise de produtividade e cadeias produtivas regionais.
 * **Intelligence:** Google Earth Engine, QGIS, Geopandas.
 * **Estatística:** IBM SPSS, Análise de Séries Temporais, Estatística Espacial.
 
-**Contato:** [LinkedIn](https://www.linkedin.com/in/milenamonteirofeitosa/) 
+**Contato:** [LinkedIn](https://www.linkedin.com/in/milenamonteirofeitosa/) | [Gmail](mailto:milenamonteirofeitosa@gmail.com)

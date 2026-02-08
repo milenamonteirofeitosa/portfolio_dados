@@ -11,8 +11,8 @@ Análise multitemporal da dinâmica fenológica da Caatinga utilizando a API do 
 
 ### 🏛️ [Plano Diretor de Fortaleza - IPPLAN](./plano-diretor-fortaleza)
 Atuação técnica em Geoprocessamento para o macrozoneamento urbano de Fortaleza.
-* **Destaque:** Espacialização de diretrizes urbanísticas e análise de zoneamento.
-* **Tecnologias:** QGIS, SIG, Planejamento Territorial.
+* **Destaque:** Produção da cartografia temática oficial e desenvolvimento de indicadores de resiliência ambiental urbana através do cruzamento de variáveis de solo, vegetação e hidrografia.
+* **Tecnologias:** Python, Google Earth Engine (GEE), QGIS, SIG, Planejamento Territorial.
 
 ### 📈 [Análise do PIB Municipal - Ceará](./analise_pib_mun_ce)
 Estudo da evolução econômica municipal com automação na coleta de dados.

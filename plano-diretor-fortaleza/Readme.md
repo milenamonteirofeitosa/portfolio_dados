@@ -22,7 +22,7 @@ O trabalho conjunto da equipe técnica resultou no zoneamento oficial da cidade,
 ## 🔗 Links Oficiais e Transparência
 O resultado consolidado deste esforço coletivo pode ser consultado nos canais oficiais:
 
-* **[Minuta Ilustrada do Plano Diretor (Versão Completa)](https://planodiretor.fortaleza.ce.gov.br/ords/f?p=116:11:6964605135788::::P11_ID,P11_PATH:3113,DIRETOR_ARQUIVOS):** Documento contendo o detalhamento do zoneamento e anexos cartográficos (págs. 242-248 do PDF) desenvolvidos pela equipe.
+* **[Minuta Ilustrada do Plano Diretor (Versão Completa)](https://drive.google.com/file/d/1jZFzz5YIM07e9JqfjzyHtWMXk5Obv8zs/view):** Documento contendo o detalhamento do zoneamento e anexos cartográficos (págs. 242-248 do PDF) desenvolvidos pela equipe.
 * **[Lei Complementar nº 49/2025 - SAPL](https://sapl.fortaleza.ce.leg.br/media/sapl/public/materialegislativa/2025/108677/lc00492025.pdf):** Texto legal aprovado que institucionaliza as diretrizes e menciona os anexos técnicos.
 
 ## 👥 Equipe e Créditos

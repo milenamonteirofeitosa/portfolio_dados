@@ -337,7 +337,7 @@ async function carregarDadosInteligencia() {
             `Os estados ${top3Densidade} lideram em densidade de farmácias por habitante. Em contrapartida, os maiores déficits estão em ${bot3Densidade}, sinalizando oportunidades claras de expansão de acesso para redes farmacêuticas.`;
         
         document.getElementById('txt-densidade-2').innerText = 
-            `Correlação territorial evidente. Mercados como ${top3Densidade} combinam alta renda e cobertura agressiva. Já ${bot3Densidade} possuem a menor cobertura nacional (abaixo de ${(piorDensidade.farma/piorDensidade.pop*100000).toFixed(1)}/100k), indicando alta elasticidade de demanda reprimida.`;
+            `Correlação territorial evidente. Mercados como ${top3Densidade} combinam alta renda e cobertura agressiva. Já ${bot3Densidade} possuem a menor cobertura nacional (abaixo de ${(piorDensidade.farma/piorDensidade.pop*100000).toFixed(1)}/100k), indicando demanda reprimida significativa com potencial de expansão elástica.`;
 
         // ====== 3. BARRAS HORIZONTAIS ======
         function buildBL(id, items, maxV, color='#3b82f6'){

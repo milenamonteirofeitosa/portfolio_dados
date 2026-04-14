@@ -4,7 +4,7 @@
 ![Python](https://img.shields.io/badge/Backend-Python_3.12-blue)
 ![JavaScript](https://img.shields.io/badge/Frontend-Vanilla_JS-yellow)
 
-**Acesse a demonstração interativa aqui:** [👉 Link para o Dashboard no GitHub Pages](https://milenamonteirofeitosa.github.io/portfolio_dados/pharma-intelligence/)
+🌐 **Dashboard:** [Explore o Painel Interativo de Inteligência Territorial](https://milenamonteirofeitosa.github.io/portfolio_dados/pharma-intelligence/)
 
 ## 📊 Sobre o Projeto
 Este projeto é uma aplicação *Full-Stack* de Business Intelligence (BI) desenvolvida para apoiar decisões estratégicas de nível executivo no varejo farmacêutico brasileiro. 

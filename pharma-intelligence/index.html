@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Inteligência Territorial Farmacêutica</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0;}
+body,.root{background:#0c0e13;color:#e2e8f0;font-family:'IBM Plex Sans',sans-serif;min-height:100vh;}
+
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 24px;border-bottom:1px solid #1e2535;
+  background:#0c0e13;position:sticky;top:0;z-index:20;
+}
+.brand{display:flex;align-items:center;gap:10px;}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:#3b82f6;box-shadow:0 0 12px #3b82f6;}
+.brand-title{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#94a3b8;}
+.brand-sub{font-size:10px;font-family:'IBM Plex Mono',monospace;color:#475569;margin-top:1px;}
+.badge{font-size:9px;font-family:'IBM Plex Mono',monospace;background:rgba(59,130,246,.12);color:#3b82f6;border:1px solid rgba(59,130,246,.3);padding:3px 10px;border-radius:20px;letter-spacing:.08em;}
+
+.nav{display:flex;gap:2px;padding:0 24px;border-bottom:1px solid #1e2535;background:#0c0e13;}
+.tab{font-size:11px;font-weight:500;letter-spacing:.07em;padding:9px 16px 10px;cursor:pointer;color:#475569;border-bottom:2px solid transparent;transition:all .2s;text-transform:uppercase;}
+.tab:hover{color:#94a3b8;}
+.tab.on{color:#3b82f6;border-bottom-color:#3b82f6;}
+
+.sec{display:none;padding:20px 24px 40px;}
+.sec.on{display:block;}
+
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px;}
+.kpi{background:#111827;border:1px solid #1e2535;border-radius:10px;padding:16px 18px;position:relative;overflow:hidden;}
+.kpi::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#3b82f6,transparent);opacity:.6;}
+.kpi-lbl{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#475569;margin-bottom:8px;font-family:'IBM Plex Mono',monospace;}
+.kpi-val{font-size:26px;font-weight:600;color:#e2e8f0;line-height:1;font-family:'IBM Plex Mono',monospace;}
+.kpi-val.blue{color:#3b82f6;}
+.kpi-val.green{color:#10b981;}
+.kpi-val.amber{color:#f59e0b;}
+.kpi-delta{font-size:10px;color:#475569;margin-top:5px;font-family:'IBM Plex Mono',monospace;}
+.kpi-sub{font-size:9px;color:#374151;margin-top:3px;}
+
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.rowfull{margin-bottom:14px;}
+.card{background:#111827;border:1px solid #1e2535;border-radius:12px;padding:18px 20px;}
+.card-title{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#475569;margin-bottom:14px;font-family:'IBM Plex Mono',monospace;display:flex;align-items:center;gap:6px;}
+.card-title .dot{width:6px;height:6px;border-radius:50%;background:#3b82f6;}
+
+/* BAR LIST */
+.bl{display:flex;flex-direction:column;gap:8px;}
+.bi .bl-head{display:flex;justify-content:space-between;font-size:10px;margin-bottom:3px;}
+.bi .bl-name{color:#94a3b8;}
+.bi .bl-val{color:#3b82f6;font-family:'IBM Plex Mono',monospace;}
+.bi .bl-track{height:4px;background:#1e2535;border-radius:2px;overflow:hidden;}
+.bi .bl-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,#1d4ed8,#3b82f6);}
+
+/* SCATTER / BUBBLE */
+.scatter{position:relative;width:100%;height:280px;border-left:1px solid #1e2535;border-bottom:1px solid #1e2535;margin-top:8px;}
+.scatter-xlabel{font-size:9px;color:#374151;position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);font-family:'IBM Plex Mono',monospace;}
+.scatter-ylabel{font-size:9px;color:#374151;position:absolute;top:50%;left:-18px;transform:translateY(-50%) rotate(-90deg);font-family:'IBM Plex Mono',monospace;}
+.dot2{position:absolute;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:600;color:#fff;cursor:default;transition:all .2s;font-family:'IBM Plex Mono',monospace;}
+.dot2:hover{z-index:10;transform:scale(1.3)!important;}
+.dot2 .tip{display:none;position:absolute;top:-32px;left:50%;transform:translateX(-50%);background:#1e2535;border:1px solid #374151;padding:3px 7px;border-radius:4px;font-size:9px;white-space:nowrap;color:#e2e8f0;z-index:20;}
+.dot2:hover .tip{display:block;}
+
+/* TABLE */
+.tbl-wrap{overflow-x:auto;}
+table.dt{width:100%;border-collapse:collapse;font-size:11px;}
+table.dt th{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#374151;padding:7px 10px;border-bottom:1px solid #1e2535;text-align:left;}
+table.dt td{padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.03);color:#94a3b8;}
+table.dt tr:hover td{background:rgba(255,255,255,.02);}
+.pill{display:inline-block;padding:2px 7px;border-radius:4px;font-size:9px;font-family:'IBM Plex Mono',monospace;}
+.p-g{background:rgba(16,185,129,.12);color:#10b981;}
+.p-b{background:rgba(59,130,246,.12);color:#3b82f6;}
+.p-y{background:rgba(245,158,11,.12);color:#f59e0b;}
+.p-r{background:rgba(239,68,68,.12);color:#ef4444;}
+
+/* SIGNAL */
+.signals{display:flex;flex-direction:column;gap:8px;}
+.sig{display:flex;gap:10px;padding:11px 13px;background:#0f172a;border:1px solid #1e2535;border-radius:8px;align-items:flex-start;}
+.sig-dot{width:7px;height:7px;border-radius:50%;margin-top:5px;flex-shrink:0;}
+.sg{background:#10b981;box-shadow:0 0 7px #10b981;}
+.sy{background:#f59e0b;box-shadow:0 0 7px #f59e0b;}
+.sr{background:#ef4444;box-shadow:0 0 7px #ef4444;}
+.sig-body{flex:1;}
+.sig-t{font-size:11px;font-weight:600;color:#e2e8f0;margin-bottom:2px;}
+.sig-d{font-size:10px;color:#475569;line-height:1.5;}
+.sig-tag{font-size:9px;padding:2px 8px;border-radius:4px;flex-shrink:0;font-family:'IBM Plex Mono',monospace;align-self:flex-start;}
+.tg-g{background:rgba(16,185,129,.12);color:#10b981;}
+.tg-y{background:rgba(245,158,11,.12);color:#f59e0b;}
+.tg-r{background:rgba(239,68,68,.12);color:#ef4444;}
+
+/* UF HEX GRID */
+.uf-grid{display:grid;grid-template-columns:repeat(9,1fr);gap:6px;margin-top:4px;}
+.uf-hex{border-radius:6px;padding:8px 4px;text-align:center;cursor:default;transition:all .2s;border:1px solid transparent;}
+.uf-hex:hover{border-color:#3b82f6;transform:scale(1.05);}
+.uf-name{font-size:11px;font-weight:600;font-family:'IBM Plex Mono',monospace;}
+.uf-n{font-size:9px;margin-top:2px;font-family:'IBM Plex Mono',monospace;}
+.uf-r{font-size:8px;margin-top:1px;color:#475569;}
+
+.insight{background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.2);border-radius:8px;padding:12px 16px;margin-top:12px;}
+.insight-lbl{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#3b82f6;margin-bottom:5px;font-family:'IBM Plex Mono',monospace;}
+.insight-txt{font-size:11px;color:#94a3b8;line-height:1.6;}
+
+.legend-row{display:flex;gap:14px;margin-top:10px;flex-wrap:wrap;}
+.li{display:flex;align-items:center;gap:5px;font-size:9px;color:#475569;font-family:'IBM Plex Mono',monospace;}
+.ld{width:8px;height:8px;border-radius:50%;}
+
+/* HEATMAP */
+.hm-wrap{display:grid;grid-template-columns:repeat(27,1fr);gap:2px;height:60px;margin-top:8px;}
+.hm-cell{border-radius:2px;}
+.hm-labels{display:grid;grid-template-columns:repeat(27,1fr);gap:2px;margin-top:4px;}
+.hm-lbl{font-size:7px;color:#374151;text-align:center;font-family:'IBM Plex Mono',monospace;}
+</style>
+</head>
+<body>
+<div class="root">
+<div class="topbar">
+  <div class="brand">
+    <div class="brand-dot"></div>
+    <div>
+      <div class="brand-title">Inteligência Territorial Farmacêutica</div>
+      <div class="brand-sub">Rendimento Mediano × Farmácias CNES · Censo 2022 + Fev/2026</div>
+    </div>
+  </div>
+  <span class="badge" id="status-badge">A CONECTAR...</span>
+</div>
+
+<div class="nav">
+  <div class="tab on" onclick="goTab(0)">Visão Geral</div>
+  <div class="tab" onclick="goTab(1)">Correlação Renda×Farmácias</div>
+  <div class="tab" onclick="goTab(2)">Ranking por UF</div>
+  <div class="tab" onclick="goTab(3)">Sinais de Expansão</div>
+</div>
+
+<div class="sec on" id="t0">
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="kpi-lbl">Total Farmácias BR</div>
+      <div class="kpi-val blue" id="kpi-total">...</div>
+      <div class="kpi-delta">CNES · Fev 2026</div>
+      <div class="kpi-sub">tipo 43 — farmácia</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Rend. Mediano Nacional</div>
+      <div class="kpi-val green">R$1.000</div>
+      <div class="kpi-delta">per capita/mês</div>
+      <div class="kpi-sub">Censo 2022 — IBGE</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">Maior Renda</div>
+      <div class="kpi-val amber" id="kpi-maior-renda-uf">...</div>
+      <div class="kpi-delta" id="kpi-maior-renda-val">...</div>
+      <div class="kpi-sub">IBGE 2022</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-lbl">UF com + Farmácias</div>
+      <div class="kpi-val blue" id="kpi-maior-farma-uf">...</div>
+      <div class="kpi-delta" id="kpi-maior-farma-val">...</div>
+      <div class="kpi-sub">do total BR</div>
+    </div>
+  </div>
+
+  <div class="row2">
+    <div class="card">
+      <div class="card-title"><span class="dot"></span>Top 10 UF — Farmácias (CNES Fev/26)</div>
+      <div class="bl" id="blFarma">Carregando dados...</div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="dot"></span>Top 10 UF — Rendimento Mediano (R$)</div>
+      <div class="bl" id="blRenda">Carregando dados...</div>
+    </div>
+  </div>
+
+  <div class="card rowfull">
+    <div class="card-title"><span class="dot"></span>Mapa de Calor — Farmácias por 100k hab (densidade real)</div>
+    <div class="hm-wrap" id="hmWrap"></div>
+    <div class="hm-labels" id="hmLabels"></div>
+    <div class="legend-row">
+      <div class="li"><div class="ld" style="background:#1e3a5f"></div>&lt;5 farm/100k</div>
+      <div class="li"><div class="ld" style="background:#1d4ed8"></div>5–15</div>
+      <div class="li"><div class="ld" style="background:#3b82f6"></div>15–25</div>
+      <div class="li"><div class="ld" style="background:#60a5fa"></div>25–35</div>
+      <div class="li"><div class="ld" style="background:#93c5fd"></div>&gt;35 farm/100k</div>
+    </div>
+    <div class="insight">
+      <div class="insight-lbl">Interpretação</div>
+      <div class="insight-txt" id="txt-densidade-1">A analisar dados...</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" id="t1">
+  <div class="card rowfull">
+    <div class="card-title"><span class="dot"></span>Correlação: Renda Mediana (R$) × Nº de Farmácias — por UF</div>
+    <div style="position:relative;padding-left:24px;padding-bottom:20px;">
+      <div class="scatter" id="scatter1">
+        <div class="scatter-ylabel">Farmácias</div>
+        <div class="scatter-xlabel">Renda Mediana (R$)</div>
+      </div>
+    </div>
+    <div class="legend-row">
+      <div class="li"><div class="ld" style="background:#3b82f6"></div>Sudeste/Sul</div>
+      <div class="li"><div class="ld" style="background:#10b981"></div>Centro-Oeste</div>
+      <div class="li"><div class="ld" style="background:#f59e0b"></div>Nordeste</div>
+      <div class="li"><div class="ld" style="background:#ef4444"></div>Norte</div>
+    </div>
+    <div class="insight">
+      <div class="insight-lbl">Correlação Territorial</div>
+      <div class="insight-txt" id="txt-densidade-2">A analisar correlação...</div>
+    </div>
+  </div>
+
+  <div class="row2">
+    <div class="card">
+      <div class="card-title"><span class="dot"></span>Renda vs Farmácias — índice de discrepância</div>
+      <div class="bl" id="blDiscrep"></div>
+      <div class="insight" style="margin-top:10px;">
+        <div class="insight-lbl">Leitura</div>
+        <div class="insight-txt">UFs com renda acima da mediana nacional mas cobertura de farmácias abaixo da média indicam mercados subatendidos com poder de compra — oportunidade direta de expansão.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="dot"></span>Farmácias por 100k habitantes — ranking real</div>
+      <div class="bl" id="blDensidade"></div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" id="t2">
+  <div class="card rowfull">
+    <div class="card-title"><span class="dot"></span>Painel por UF — Renda · Farmácias · Densidade · Potencial</div>
+    <div class="tbl-wrap">
+      <table class="dt" id="rankTable"></table>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title"><span class="dot"></span>Grid Territorial</div>
+    <div class="uf-grid" id="ufGrid"></div>
+    <div class="legend-row">
+      <div class="li"><div class="ld" style="background:#1d4ed8"></div>Alta renda + boa cobertura</div>
+      <div class="li"><div class="ld" style="background:#10b981"></div>Renda média, boa cobertura</div>
+      <div class="li"><div class="ld" style="background:#f59e0b"></div>Oportunidade: renda ok, sub-cobertura</div>
+      <div class="li"><div class="ld" style="background:#ef4444"></div>Mercado emergente: baixa renda e cobertura</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" id="t3">
+  <div class="card rowfull">
+    <div class="card-title"><span class="dot"></span>Sinais Estratégicos de Expansão Setorial</div>
+    <div class="signals" id="signalList"></div>
+  </div>
+  <div class="row2" style="margin-top:14px;">
+    <div class="card">
+      <div class="card-title"><span class="dot"></span>Quadrante de Prioridade de Expansão</div>
+      <div style="position:relative;height:240px;border:1px solid #1e2535;border-radius:8px;margin-top:4px;" id="quadrant">
+        <div style="position:absolute;top:4px;left:4px;font-size:8px;color:#1d4ed8;font-family:'IBM Plex Mono',monospace;">ALTA RENDA</div>
+        <div style="position:absolute;bottom:4px;left:4px;font-size:8px;color:#ef4444;font-family:'IBM Plex Mono',monospace;">BAIXA RENDA</div>
+        <div style="position:absolute;top:4px;left:25%;font-size:8px;color:#374151;font-family:'IBM Plex Mono',monospace;">← BAIXA COBERTURA</div>
+        <div style="position:absolute;top:4px;right:4px;font-size:8px;color:#374151;font-family:'IBM Plex Mono',monospace;">ALTA COBERTURA →</div>
+        <div style="position:absolute;top:50%;left:0;right:0;height:1px;background:#1e2535;"></div>
+        <div style="position:absolute;left:50%;top:0;bottom:0;width:1px;background:#1e2535;"></div>
+        <div style="position:absolute;top:14px;left:4px;width:45%;height:45%;display:flex;align-items:center;justify-content:center;font-size:9px;color:#f59e0b;text-align:center;">⭐ PRIORIDADE<br>Alta renda,<br>baixa cobertura</div>
+        <div style="position:absolute;top:14px;right:4px;width:45%;height:45%;display:flex;align-items:center;justify-content:center;font-size:9px;color:#1d4ed8;text-align:center;">✓ CONSOLIDADO<br>Alta renda,<br>boa cobertura</div>
+        <div style="position:absolute;bottom:14px;left:4px;width:45%;height:40%;display:flex;align-items:center;justify-content:center;font-size:9px;color:#ef4444;text-align:center;">🌱 EMERGENTE<br>Baixa renda,<br>baixa cobertura</div>
+        <div style="position:absolute;bottom:14px;right:4px;width:45%;height:40%;display:flex;align-items:center;justify-content:center;font-size:9px;color:#10b981;text-align:center;">📈 EFICIENTE<br>Renda média,<br>boa cobertura</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="dot"></span>Fontes dos Dados</div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px;">
+        <div style="padding:10px;background:#0f172a;border:1px solid #1e2535;border-radius:6px;">
+          <div style="font-size:10px;font-weight:600;color:#3b82f6;margin-bottom:4px;font-family:'IBM Plex Mono',monospace;">IBGE — Tabelas 10295 e 1209</div>
+          <div style="font-size:10px;color:#475569;">Censo Demográfico 2022. População residente e Rendimento domiciliar mensal per capita mediano.</div>
+        </div>
+        <div style="padding:10px;background:#0f172a;border:1px solid #1e2535;border-radius:6px;">
+          <div style="font-size:10px;font-weight:600;color:#3b82f6;margin-bottom:4px;font-family:'IBM Plex Mono',monospace;">DATASUS / CNES — Fev/2026</div>
+          <div style="font-size:10px;color:#475569;">Cadastro Nacional de Estabelecimentos de Saúde. TP_UNIDADE = 43 (FARMÁCIA).</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+const TABS = document.querySelectorAll('.tab');
+const SECS = document.querySelectorAll('.sec');
+function goTab(i){
+  TABS.forEach((t,j)=>t.classList.toggle('on',i===j));
+  SECS.forEach((s,j)=>s.classList.toggle('on',i===j));
+}
+
+let UFS = [];
+
+async function carregarDadosInteligencia() {
+    try {
+        const resposta = await fetch('./dados_expansao.json');
+        
+        if (!resposta.ok) throw new Error("Ficheiro JSON não encontrado!");
+        
+        const dadosAPI = await resposta.json();
+        UFS = dadosAPI.ufs;
+        
+        const badge = document.getElementById('status-badge');
+        badge.innerText = 'DADOS REAIS (ESTÁTICO)';
+        badge.style.color = '#10b981';
+        badge.style.borderColor = 'rgba(16,185,129,.3)';
+        badge.style.background = 'rgba(16,185,129,.12)';
+
+        // ====== 1. CÁLCULOS GERAIS ======
+        const totalFarma = UFS.reduce((sum, u) => sum + u.farma, 0);
+        document.getElementById('kpi-total').innerText = totalFarma.toLocaleString('pt-BR');
+
+        const ufsPorFarma = [...UFS].sort((a,b)=>b.farma-a.farma);
+        document.getElementById('kpi-maior-farma-uf').innerText = ufsPorFarma[0].uf;
+        document.getElementById('kpi-maior-farma-val').innerText = `${ufsPorFarma[0].farma.toLocaleString('pt-BR')} farmácias`;
+
+        const ufsPorRenda = [...UFS].sort((a,b)=>b.renda-a.renda);
+        document.getElementById('kpi-maior-renda-uf').innerText = ufsPorRenda[0].uf;
+        document.getElementById('kpi-maior-renda-val').innerText = `R$ ${ufsPorRenda[0].renda.toLocaleString('pt-BR', {maximumFractionDigits:0})} pc`;
+
+        // CORREÇÃO CRÍTICA: A mediana nacional do Censo é R$ 1.000. 
+        // Usamos este valor como linha de corte para alta/baixa renda.
+        const avg_renda = 1000; 
+        const avg_farma_100k = UFS.reduce((s,u)=>s+(u.farma/u.pop*100000),0)/UFS.length;
+        const reg_color = {N:'#ef4444',NE:'#f59e0b',SE:'#3b82f6',S:'#1d4ed8',CO:'#10b981'};
+
+        // ====== 2. TEXTOS DINÂMICOS ======
+        const ufsPorDensidade = [...UFS].sort((a,b)=>(b.farma/b.pop)-(a.farma/a.pop));
+        const top3Densidade = ufsPorDensidade.slice(0,3).map(u=>u.uf).join(', ').replace(/, ([^,]*)$/, ' e $1');
+        const bot3Densidade = ufsPorDensidade.slice(-3).map(u=>u.uf).join(', ').replace(/, ([^,]*)$/, ' e $1');
+        const piorDensidade = ufsPorDensidade[ufsPorDensidade.length-1];
+        const melhorDensidade = ufsPorDensidade[0];
+
+        document.getElementById('txt-densidade-1').innerText = 
+            `Os estados ${top3Densidade} lideram em densidade de farmácias por habitante. Em contrapartida, os maiores déficits estão em ${bot3Densidade}, sinalizando oportunidades claras de expansão de acesso para redes farmacêuticas.`;
+        
+        document.getElementById('txt-densidade-2').innerText = 
+            `Correlação territorial evidente. Mercados como ${top3Densidade} combinam alta renda e cobertura agressiva. Já ${bot3Densidade} possuem a menor cobertura nacional (abaixo de ${(piorDensidade.farma/piorDensidade.pop*100000).toFixed(1)}/100k), indicando alta elasticidade de demanda reprimida.`;
+
+        // ====== 3. BARRAS HORIZONTAIS ======
+        function buildBL(id, items, maxV, color='#3b82f6'){
+          document.getElementById(id).innerHTML = items.map(i=>`
+            <div class="bi">
+              <div class="bl-head"><span class="bl-name">${i.n}</span><span class="bl-val" style="color:${i.c||color}">${i.v}</span></div>
+              <div class="bl-track"><div class="bl-fill" style="width:${(i.raw/maxV*100).toFixed(1)}%;background:linear-gradient(90deg,${(i.c||color)}88,${i.c||color})"></div></div>
+            </div>`).join('');
+        }
+
+        buildBL('blFarma', ufsPorFarma.slice(0,10).map(u=>({n:u.uf,v:u.farma.toLocaleString('pt-BR'),raw:u.farma,c:reg_color[u.reg]})), ufsPorFarma[0].farma);
+        buildBL('blRenda', ufsPorRenda.slice(0,10).map(u=>({n:u.uf,v:'R$'+u.renda.toLocaleString('pt-BR',{maximumFractionDigits:0}),raw:u.renda,c:reg_color[u.reg]})), ufsPorRenda[0].renda);
+
+        // ====== 4. MAPA DE CALOR ======
+        const hmW = document.getElementById('hmWrap');
+        const hmL = document.getElementById('hmLabels');
+        const sorted27 = [...UFS].sort((a,b)=>a.uf.localeCompare(b.uf));
+        
+        sorted27.forEach(u=>{
+          const d = u.farma/u.pop*100000;
+          let cor = '#93c5fd';
+          if(d<5) cor = '#1e3a5f'; else if(d<15) cor = '#1d4ed8'; else if(d<25) cor = '#3b82f6'; else if(d<35) cor = '#60a5fa';
+          hmW.innerHTML += `<div class="hm-cell" style="background:${cor}" title="${u.uf}: ${d.toFixed(1)}/100k"></div>`;
+          hmL.innerHTML += `<div class="hm-lbl">${u.uf}</div>`;
+        });
+
+        // ====== 5. SCATTER PLOT ======
+        const sc = document.getElementById('scatter1');
+        const maxR = ufsPorRenda[0].renda, minR = ufsPorRenda[ufsPorRenda.length-1].renda;
+        const maxF = ufsPorFarma[0].farma;
+        
+        UFS.forEach(u=>{
+          const x = (u.renda-minR)/(maxR-minR)*90+5;
+          const y = 100-(u.farma/maxF*90+5);
+          const size = 12+u.pop/44000000*18;
+          sc.innerHTML += `<div class="dot2" style="left:${x}%;top:${y}%;width:${size}px;height:${size}px;background:${reg_color[u.reg]};transform:translate(-50%,-50%);">${u.uf}<span class="tip">${u.uf}: R$${Math.round(u.renda).toLocaleString('pt-BR')} | ${u.farma.toLocaleString('pt-BR')} farm.</span></div>`;
+        });
+
+        // ====== 6. RANKINGS ======
+        const frRank = {}; ufsPorDensidade.forEach((u,i)=>frRank[u.uf]=i+1);
+        const rrRank = {}; ufsPorRenda.forEach((u,i)=>rrRank[u.uf]=i+1);
+        const discr = UFS.map(u=>({uf:u.uf,d:frRank[u.uf]-rrRank[u.uf],reg:u.reg})).sort((a,b)=>b.d-a.d).slice(0,8);
+        buildBL('blDiscrep', discr.map(x=>({n:x.uf,v:(x.d>0?'+':'')+x.d+' pos.',raw:Math.abs(x.d),c:x.d>0?'#f59e0b':'#10b981'})),Math.max(...discr.map(x=>Math.abs(x.d))));
+        buildBL('blDensidade', ufsPorDensidade.slice(0,10).map(u=>({n:u.uf,v:(u.farma/u.pop*100000).toFixed(1)+'/100k',raw:u.farma/u.pop,c:reg_color[u.reg]})), melhorDensidade.farma/melhorDensidade.pop);
+
+        document.getElementById('rankTable').innerHTML = `<thead><tr><th>UF</th><th>Renda Mediana</th><th>Farmácias</th><th>Farm/100k</th><th>Região</th><th>Potencial</th></tr></thead><tbody>` + 
+        ufsPorFarma.map(u=>{
+          const dens = u.farma/u.pop*100000;
+          let pot = u.renda>avg_renda ? (dens<avg_farma_100k?'<span class="pill p-y">Alta priorid.</span>':'<span class="pill p-b">Consolidado</span>') : (dens<avg_farma_100k?'<span class="pill p-r">Emergente</span>':'<span class="pill p-g">Eficiente</span>');
+          return `<tr><td style="color:#e2e8f0;font-weight:600;">${u.uf}</td><td>R$ ${Math.round(u.renda)}</td><td>${u.farma.toLocaleString('pt-BR')}</td><td>${dens.toFixed(1)}</td><td style="color:${reg_color[u.reg]}">${u.reg}</td><td>${pot}</td></tr>`;
+        }).join('') + `</tbody>`;
+
+        document.getElementById('ufGrid').innerHTML = sorted27.map(u=>{
+          const dens = u.farma/u.pop*100000;
+          let bg, color;
+          if(u.renda>avg_renda && dens>=avg_farma_100k){bg='rgba(29,78,216,.15)';color='#3b82f6';}
+          else if(u.renda>avg_renda && dens<avg_farma_100k){bg='rgba(245,158,11,.15)';color='#f59e0b';}
+          else if(u.renda<=avg_renda && dens>=avg_farma_100k){bg='rgba(16,185,129,.15)';color='#10b981';}
+          else{bg='rgba(239,68,68,.12)';color='#ef4444';}
+          return `<div class="uf-hex" style="background:${bg}"><div class="uf-name" style="color:${color}">${u.uf}</div><div class="uf-n" style="color:${color}">${u.farma}</div><div class="uf-r">R$${u.renda>999?(u.renda/1000).toFixed(1)+'k':Math.round(u.renda)}</div></div>`;
+        }).join('');
+
+        // ====== 7. SINAIS ESTRATÉGICOS DINÂMICOS ======
+        const signals = [
+          {t:`${ufsPorRenda[0].uf}: maior renda, foco premium`,d:`Com R$${Math.round(ufsPorRenda[0].renda)} per capita (mediana), ${ufsPorRenda[0].uf} possui espaço estratégico para farmácias focadas em dermocosméticos e serviços agregados.`,c:'sy',tc:'tg-y',tag:'Premium'},
+          {t:`${ufsPorFarma[0].uf}: o maior parque farmacêutico`,d:`${ufsPorFarma[0].uf} concentra ${ufsPorFarma[0].farma.toLocaleString('pt-BR')} farmácias. A expansão aqui requer análise de microdados para evitar canibalização.`,c:'sg',tc:'tg-g',tag:'Alta escala'},
+          {t:`${piorDensidade.uf} e ${ufsPorDensidade[ufsPorDensidade.length-2].uf}: base da pirâmide emergente`,d:`Com as menores coberturas por habitante do país, estes estados são oceanos azuis para redes populares focadas em genéricos.`,c:'sg',tc:'tg-g',tag:'Longo prazo'},
+          {t:`${melhorDensidade.uf}: altíssima concorrência`,d:`Liderando com ${(melhorDensidade.farma/melhorDensidade.pop*100000).toFixed(1)} farmácias/100k hab. Exige ganho de eficiência logística e não apenas novas aberturas.`,c:'sg',tc:'tg-g',tag:'Consolidado'},
+        ];
+        document.getElementById('signalList').innerHTML = signals.map(s=>`<div class="sig"><div class="sig-dot ${s.c}"></div><div class="sig-body"><div class="sig-t">${s.t}</div><div class="sig-d">${s.d}</div></div><span class="sig-tag ${s.tc}">${s.tag}</span></div>`).join('');
+
+    } catch (erro) {
+        console.error("Erro:", erro);
+        document.getElementById('status-badge').innerText = 'ERRO DE LIGAÇÃO JSON';
+        document.getElementById('status-badge').style.color = '#ef4444';
+        alert("Atenção: Não foi possível carregar o 'dados_expansao.json'. Se estiver no seu computador, tem de abrir com um Servidor Local. Se estiver no GitHub Pages, verifique se fez o upload do ficheiro JSON na mesma pasta do index.html.");
+    }
+}
+
+carregarDadosInteligencia();
+</script>
+</body>
+</html>

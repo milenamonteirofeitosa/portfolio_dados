@@ -4,7 +4,7 @@
 ![Python](https://img.shields.io/badge/Backend-Python_3.12-blue)
 ![JavaScript](https://img.shields.io/badge/Frontend-Vanilla_JS-yellow)
 
-**Acesse a demonstração interativa aqui:** [👉 Link para o Dashboard no GitHub Pages](https://[seu-usuario].github.io/pharma-intelligence-br/)
+**Acesse a demonstração interativa aqui:** [👉 Link para o Dashboard no GitHub Pages](https://milenamonteirofeitosa.github.io/portfolio_dados/pharma-intelligence/)
 
 ## 📊 Sobre o Projeto
 Este projeto é uma aplicação *Full-Stack* de Business Intelligence (BI) desenvolvida para apoiar decisões estratégicas de nível executivo no varejo farmacêutico brasileiro. 
@@ -30,6 +30,6 @@ O projeto foi construído para lidar de forma eficiente com bases de dados gover
 ## 🗄️ Fontes de Dados (Data Sources)
 Todos os dados utilizados são públicos e oficiais:
 1. **Ministério da Saúde / CNES (Fevereiro/2026):** Extração do Cadastro Nacional de Estabelecimentos de Saúde, filtrando exclusivamente estabelecimentos ativos do tipo "Farmácia" (Código 43).
-2. **IBGE (Censo Demográfico 2022):** Tabela 10295 - Rendimento domiciliar mensal per capita nominal médio, além de estimativas populacionais.
+2. **IBGE (Censo Demográfico 2022):** Tabelas 10295 e 1209. Extração da População residente e cruzamento com o Rendimento domiciliar mensal per capita nominal mediano, garantindo uma leitura precisa do poder de compra da maioria populacional, sem distorção por extremos de riqueza.
 3. **ANVISA / SNGPC (Q1 2026):** Microdados de vendas de medicamentos industrializados para modelagem do perfil de consumo por princípio ativo, faixa etária e sexo.
 

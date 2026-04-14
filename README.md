@@ -14,6 +14,11 @@ Atuação técnica em Geoprocessamento para o macrozoneamento urbano de Fortalez
 * **Destaque:** Produção da cartografia temática oficial e desenvolvimento de indicadores de resiliência ambiental urbana através do cruzamento de variáveis de solo, vegetação e hidrografia.
 * **Tecnologias:** Python, Google Earth Engine (GEE), QGIS, SIG, Planejamento Territorial.
 
+### 🧬 [Pharma Intelligence BR: Inteligência Territorial](./pharma-intelligence)
+Aplicação *Full-Stack* de BI para identificação de oportunidades no varejo farmacêutico.
+* **Destaque:** Cruzamento entre Rendimento Mediano (IBGE) e densidade de farmácias (CNES) para localização de "Oceanos Azuis" (alta renda e baixa saturação).
+* **Tecnologias:** Python (Pandas/FastAPI), JavaScript, Engenharia de Dados.
+
 ### 📈 [Análise do PIB Municipal - Ceará](./analise_pib_mun_ce)
 Estudo da evolução econômica municipal com automação na coleta de dados.
 * **Destaque:** Consumo automatizado de dados do **SIDRA/IBGE via API** e análise de disparidades regionais.

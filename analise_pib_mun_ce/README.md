@@ -1,76 +1,47 @@
-# 📊 Consulta ao PIB dos Municípios do Ceará via API SIDRA/IBGE
+# Análise do PIB Municipal — Ceará via API SIDRA/IBGE
 
-Este script em Python consulta a API do SIDRA (Sistema IBGE de Recuperação Automática) para obter os dados de **PIB capita** dos municípios do estado do **Ceará (UF 23)** e permite salvar os resultados em arquivos CSV ou Excel.
+Script Python para consulta automatizada à API do SIDRA/IBGE, obtendo dados de
+PIB *per capita* dos municípios do Ceará (UF 23) com exportação para CSV ou Excel.
 
-## 🔧 Requisitos
-
-Antes de executar o script, certifique-se de que as seguintes bibliotecas estão instaladas:
+## Requisitos
 
 ```bash
 pip install pandas requests openpyxl
 ```
 
-## 🚀 Como funciona
-**Consulta a API do SIDRA** com a tabela 5938 (PIB dos municípios).
-
-**Filtra os dados** apenas para o estado do Ceará (código 23).
-
-**Processa os dados** e exibe os municípios com maior PIB.
-
-**Pergunta ao usuário** se deseja salvar os dados como CSV, Excel ou nenhum.
-
-## 📁 Estrutura do Código
-`consultar_api_sidra()`
-
-Realiza a requisição HTTP à API do SIDRA para o período informado.
-
-`processar_dados()`
-
-Transforma a resposta JSON em um DataFrame do Pandas, filtra os dados do Ceará e realiza o tratamento necessário.
-
-`salvar_dados()`
-
-Salva os dados no formato desejado, de acordo com a escolha do usuário.
-
-`main()`
-
-Função principal que orquestra o fluxo: consulta → processamento → exibição → salvamento.
-
-## 🧪 Exemplo de uso
-Ao executar o script:
+## Como executar
 
 ```bash
 python PIB_analise.py
 ```
 
-O script exibirá os municípios com maior PIB no Ceará e perguntará:
+O script consulta a API, processa os dados e pergunta:
 
 ```bash
-"Deseja salvar os dados? (csv/excel/nenhum):"
-
+Deseja salvar os dados? (csv/excel/nenhum):
 ```
 
-Digite sua opção e o arquivo será salvo no diretório atual.
+## Estrutura do código
 
-## 📎 Fonte dos Dados
+| Função | Responsabilidade |
+|--------|-----------------|
+| `consultar_api_sidra()` | Requisição HTTP à API SIDRA — Tabela 5938 |
+| `processar_dados()` | Transforma JSON em DataFrame, filtra Ceará e trata inconsistências |
+| `salvar_dados()` | Exporta no formato escolhido pelo usuário |
+| `main()` | Orquestra o fluxo: consulta → processamento → exibição → salvamento |
 
-**SIDRA/IBGE - Tabela 5938**
+## Resultado — Top 5 municípios por PIB (2021)
 
-[Link da API](https://apisidra.ibge.gov.br/)
+| Município | PIB 2021 (R$ mil) |
+|-----------|-------------------|
+| Fortaleza | 73.436.128 |
+| Maracanaú | 12.337.017 |
+| Caucaia | 10.414.373 |
+| São Gonçalo do Amarante | 8.633.637 |
+| Sobral | 5.395.130 |
 
-## 🏆 Ranking dos Municípios do Ceará com Maior PIB
+*Fonte: SIDRA/IBGE — [Tabela 5938](https://apisidra.ibge.gov.br/)*
 
-A tabela abaixo mostra os municípios com os maiores PIBs no Ceará em 2021, com base nos dados obtidos da API do SIDRA/IBGE.
+---
 
-| Município | PIB_2021 |
-| ------------- | ------------- |
-| Fortaleza - CE | 73436128 |
-| Maracanaú - CE | 12337017 |
-| Caucaia - CE | 10414373| 
-| São Gonçalo do Amarante - CE | 8633637 |
-| Sobral - CE | 5395130 |
-
-## 🧑‍💻 Autor(a)
-Este script foi desenvolvido com o objetivo de facilitar o acesso a dados públicos do IBGE sobre o desenvolvimento econômico dos municípios cearenses.
-
-
+**Stack:** Python · Pandas · Requests · API SIDRA/IBGE

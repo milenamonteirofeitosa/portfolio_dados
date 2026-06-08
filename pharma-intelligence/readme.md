@@ -1,35 +1,47 @@
-# 🧬 Pharma Intelligence BR | Inteligência Territorial Farmacêutica
+# Pharma Intelligence BR — Inteligência Territorial Farmacêutica
 
 ![Status](https://img.shields.io/badge/Status-Concluído-brightgreen)
 ![Python](https://img.shields.io/badge/Backend-Python_3.12-blue)
 ![JavaScript](https://img.shields.io/badge/Frontend-Vanilla_JS-yellow)
 
-🌐 **Dashboard:** [Explore o Painel Interativo de Inteligência Territorial](https://milenamonteirofeitosa.github.io/portfolio_dados/pharma-intelligence/)
+**Dashboard:** [Explore o Painel Interativo](https://milenamonteirofeitosa.github.io/portfolio_dados/pharma-intelligence/)
 
-## 📊 Sobre o Projeto
-Este projeto é uma aplicação *Full-Stack* de Business Intelligence (BI) desenvolvida para apoiar decisões estratégicas de nível executivo no varejo farmacêutico brasileiro. 
+---
 
-Em vez de focar apenas no passado (Sell-Out), a ferramenta cruza dados de consumo com variáveis sociodemográficas e de infraestrutura de saúde para identificar **"Oceanos Azuis"** — mercados com alto poder de compra, demanda reprimida e baixa saturação da concorrência.
+## Sobre o projeto
 
-### 🎯 Principais Funcionalidades
-* **Análise de Saturação (Market Share Real):** Cálculo de densidade de farmácias por 100 mil habitantes utilizando dados oficias e atualizados.
-* **Matriz de Correlação (Scatter Plot):** Cruzamento entre Renda *per capita* (IBGE) e volume de estabelecimentos (CNES) para encontrar assimetrias de mercado.
-* **Smart Insights (Textos Dinâmicos):** Um motor de regras em JavaScript que lê os dados em tempo real e escreve a interpretação analítica do cenário automaticamente.
-* **Mapas de Calor (Heatmaps) e Rankings:** Classificação automática das 27 Unidades Federativas em quadrantes de investimento (Prioridade, Consolidado, Emergente, Eficiente).
+Aplicação full-stack de Business Intelligence para apoio a decisões estratégicas no varejo
+farmacêutico brasileiro. A ferramenta cruza dados de consumo com variáveis sociodemográficas
+e de infraestrutura de saúde para identificar **"Oceanos Azuis"** — mercados com alto poder
+de compra, demanda reprimida e baixa saturação competitiva.
 
-## 🛠️ Arquitetura e Tecnologias
-O projeto foi construído para lidar de forma eficiente com bases de dados governamentais massivas, utilizando o conceito de *Data Freezing* para o deployment estático.
+## Funcionalidades
 
-**Engenharia de Dados (Backend):**
-* **Python & Pandas:** Scripts pesados (`main.py`) desenvolvidos para extrair, limpar e cruzar milhões de linhas de dados brutos (ETL), filtrando erros de tipagem e resolvendo inconsistências em bases de centenas de Megabytes.
-* **FastAPI:** Criação de rotas API locais para servir os dados consolidados.
+| Funcionalidade | Descrição |
+|----------------|-----------|
+| Análise de saturação | Densidade de farmácias por 100 mil habitantes com dados oficiais atualizados |
+| Matriz de correlação | Cruzamento entre renda *per capita* (IBGE) e volume de estabelecimentos (CNES) |
+| Smart Insights | Motor de regras em JavaScript que interpreta o cenário analítico em tempo real |
+| Rankings e heatmaps | Classificação das 27 UFs em quadrantes: Prioridade, Consolidado, Emergente, Eficiente |
 
-**Visualização (Frontend):**
-* **HTML5 / CSS3 / Vanilla JS:** Design executivo *Dark Mode / Cyberpunk*, focado em UI/UX de alta performance sem dependência de bibliotecas pesadas de gráficos. Tudo renderizado nativamente ou via CSS Grid/Flexbox.
+## Arquitetura
 
-## 🗄️ Fontes de Dados (Data Sources)
-Todos os dados utilizados são públicos e oficiais:
-1. **Ministério da Saúde / CNES (Fevereiro/2026):** Extração do Cadastro Nacional de Estabelecimentos de Saúde, filtrando exclusivamente estabelecimentos ativos do tipo "Farmácia" (Código 43).
-2. **IBGE (Censo Demográfico 2022):** Tabelas 10295 e 1209. Extração da População residente e cruzamento com o Rendimento domiciliar mensal per capita nominal mediano, garantindo uma leitura precisa do poder de compra da maioria populacional, sem distorção por extremos de riqueza.
-3. **ANVISA / SNGPC (Q1 2026):** Microdados de vendas de medicamentos industrializados para modelagem do perfil de consumo por princípio ativo, faixa etária e sexo.
+**Backend — Engenharia de dados**
+- `Python & Pandas` — pipeline ETL para extração, limpeza e cruzamento de bases governamentais massivas (centenas de MB), com tratamento de erros de tipagem e inconsistências
+- `FastAPI` — rotas API locais para servir os dados consolidados
+- *Data Freezing* para deployment estático
 
+**Frontend — Visualização**
+- `HTML5 / CSS3 / Vanilla JS` — interface dark mode sem dependência de bibliotecas externas de gráficos; renderização nativa via CSS Grid/Flexbox
+
+## Fontes de dados
+
+| Fonte | Dados | Referência |
+|-------|-------|------------|
+| Ministério da Saúde / CNES | Estabelecimentos ativos tipo "Farmácia" (Código 43) | Fev/2026 |
+| IBGE — Censo 2022 | População residente + rendimento domiciliar mediano *per capita* (Tab. 10295 e 1209) | 2022 |
+| ANVISA / SNGPC | Microdados de vendas de medicamentos por princípio ativo, faixa etária e sexo | Q1/2026 |
+
+---
+
+**Stack:** Python · Pandas · FastAPI · JavaScript · HTML5 · CSS3

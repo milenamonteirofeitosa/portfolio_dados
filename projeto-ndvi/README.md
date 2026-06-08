@@ -1,47 +1,54 @@
-# 🌿 Monitoramento de Índices de Vegetação (NDVI) e Correlação Hidro-Climática no Ceará: Uma Abordagem via Google Earth Engine (2005 - 2024)
+# Monitoramento NDVI e Correlação Hidro-Climática no Ceará (2005–2024)
 
-## 📌 Sobre o Projeto
-Este repositório apresenta um estudo técnico de **Sensoriamento Remoto Orbital** focado na análise da evolução do vigor vegetativo no estado do Ceará. O projeto integra o processamento de índices de vegetação (NDVI) com séries históricas pluviométricas oficiais da **FUNCEME**, avaliando a resposta e a resiliência do bioma Caatinga frente à variabilidade climática das últimas duas décadas.
+Estudo de sensoriamento remoto orbital focado na evolução do vigor vegetativo no Ceará,
+integrando índices NDVI com séries históricas pluviométricas da FUNCEME para avaliar
+a resiliência da Caatinga frente à variabilidade climática das últimas duas décadas.
 
-## 🚀 Metodologia e Fonte de Dados
+## Metodologia
 
-### 🛰️ Sensoriamento Remoto via Python API (Google Earth Engine)
-A extração e o processamento dos dados de refletância de superfície foram realizados utilizando a **API do Google Earth Engine para Python**. Esta abordagem permitiu a automação do fluxo de trabalho e a integração de dados multitemporais de três missões Landsat:
-* **2005 - 2011:** Landsat 5 (TM)
-* **2012:** Landsat 7 (ETM+)
-* **2013 - 2024:** Landsat 8 (OLI/TIRS)
+**Sensoriamento Remoto — Google Earth Engine (Python API)**
 
-**Especificações Técnicas:**
-* **Cálculo de Índice:** Normalized Difference Vegetation Index (NDVI).
-* **Processamento em Nuvem:** Scripts para filtragem de nuvens, correção atmosférica e redução temporal.
-* **Análise Local:** Exportação dos dados para processamento fino e estatística geoespacial via bibliotecas `pandas` e `rasterio`.
+Extração e processamento de dados de refletância de superfície via API do GEE,
+com cobertura de três missões Landsat:
 
-### 🌧️ Dados de Precipitação (FUNCEME)
-* **Fonte:** Fundação Cearense de Meteorologia e Recursos Hídricos.
-* **Dados:** Séries anuais de precipitação acumulada (mm) para os 184 municípios do Ceará.
+| Período | Missão |
+|---------|--------|
+| 2005–2011 | Landsat 5 (TM) |
+| 2012 | Landsat 7 (ETM+) |
+| 2013–2024 | Landsat 8 (OLI/TIRS) |
 
-## 📊 Análise de Resultados
+Pipeline: filtragem de nuvens → correção atmosférica → redução temporal → exportação
+para análise estatística local via `pandas` e `rasterio`.
 
-### 1. Evolução do Vigor Vegetativo
-A análise comparativa entre os anos extremos do estudo demonstra um incremento significativo na atividade fotossintética média do estado:
-* **Média NDVI 2005:** 0.187 (Ano com índices pluviométricos abaixo da média)
-* **Média NDVI 2024:** 0.256 (Pico de vigor vegetativo observado na série)
-* **Variação:** Ganho de **+36.8%** no índice de vigor vegetativo médio estadual.
+**Dados de Precipitação**
 
-### 2. Resiliência do Bioma frente à Variabilidade Hídrica
-O cruzamento de dados evidencia a **alta sensibilidade hídrica** da vegetação cearense. Embora o ciclo de seca severa (2012-2016) tenha impactado negativamente os índices de biomassa, os resultados recentes comprovam uma elevada **resiliência ambiental**, onde a sucessão de períodos favoráveis permitiu uma rápida regeneração do vigor vegetativo.
+Séries anuais de precipitação acumulada (mm) para os 184 municípios do Ceará — Fonte: FUNCEME.
 
-## 🖼️ Visualizações Finais
+## Resultados
 
-### Série Histórica de 20 Anos
-Correlação entre a precipitação acumulada (barras) e a linha de tendência do vigor vegetativo (NDVI).
+| Indicador | 2005 | 2024 | Variação |
+|-----------|------|------|----------|
+| Média NDVI estadual | 0,187 | 0,256 | +36,8% |
+
+O ciclo de seca severa (2012–2016) impactou negativamente os índices de biomassa,
+mas os resultados recentes evidenciam alta resiliência ambiental: períodos favoráveis
+subsequentes permitiram rápida regeneração do vigor vegetativo.
+
+## Visualizações
+
+**Série histórica — 20 anos**
+
+Correlação entre precipitação acumulada (barras) e tendência do NDVI.
+
 ![Série Histórica](visualizacao/grafico_historico_funceme_ndvi.png)
 
-### Evolução do Vigor Vegetativo (Comparativo Geospacial)
-Mapeamento da variação espacial do vigor vegetativo entre 2005 e 2024.
-* **Simbologia:** Vermelho (Solo Exposto/Água) → Verde (Vegetação Ativa/Saudável).
+**Comparativo geoespacial — 2005 vs. 2024**
+
+Variação espacial do vigor vegetativo. Simbologia: vermelho (solo exposto) → verde
+(vegetação ativa).
+
 ![Mapa Comparativo](visualizacao/resultado_final_geoprocessamento.png)
 
 ---
-**Análise desenvolvida por Milena Monteiro**
-*Geoprocessamento | Sensoriamento Remoto | Python Data Science*
+
+**Stack:** Python · Google Earth Engine API · Pandas · Rasterio · Geopandas

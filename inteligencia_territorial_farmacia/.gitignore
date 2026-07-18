@@ -1,0 +1,11 @@
+# Segurança e senhas
+.env
+
+# Arquivos temporários do Python
+__pycache__/
+*.pyc
+
+# Ignorar apenas as bases de dados BRUTAS pesadas (IBGE, CNES)
+# (O arquivo .pbix NÃO está aqui, então ele será enviado)
+*.csv
+*.xlsx

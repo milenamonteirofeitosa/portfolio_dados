@@ -1,8 +1,8 @@
 # Inteligência Territorial Farmacêutica: Dashboard de Expansão de Mercado
 
-![Dashboard - Visão Geral](image_4df945.png)
-
 Este projeto consiste em um pipeline de dados completo (End-to-End) e um painel de Business Intelligence (BI) avançado, desenvolvido para mapear o potencial de mercado farmacêutico em todo o território brasileiro. A solução cruza dados demográficos (IBGE) com dados de estabelecimentos de saúde (CNES/DATASUS) para identificar gaps de mercado e classificar o potencial de expansão por Unidade Federativa (UF).
+
+![Demonstração do Dashboard](https://raw.githubusercontent.com/milenamonteirofeitosa/portfolio_dados/main/inteligencia_territorial_farmacia/dashboards/video_demonstracao.gif)
 
 ## Contexto do Problema
 
